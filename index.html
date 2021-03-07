@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatRoom</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        #msg{
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="msg"></ul>
+    <form id="form" action="">
+        <div class="form-group">
+            <input id="input" class="form-control" autocomplete="off"><button class="btn btn-primary">send</button>
+        </div>
+        
+    </form>
+</body>
+<script>
+    let socket = io()
+
+    let messages = document.getElementById('msg')
+    let form = document.getElementById('form')
+    let input = document.getElementById('input')
+
+    form.addEventListener('submit', (event)=>{
+        event.preventDefault()
+        if (input.value) {
+            socket.emit('chat msg', input.value)
+            input.value = ''
+        }
+    })
+
+    socket.on('chat msg', (msg)=>{
+        let item = document.createElement('li')
+        item.textContent = msg
+        messages.appendChild(item)
+        window.scrollTo(0, document.body.scrollHeight)
+
+    })
+</script>
+</html>

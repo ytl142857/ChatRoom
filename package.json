@@ -1,0 +1,23 @@
+{
+  "name": "chatroom-socketio",
+  "version": "1.0.0",
+  "description": "A ChatRoom created by JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ytl142857/ChatRoom.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ytl142857/ChatRoom/issues"
+  },
+  "homepage": "https://github.com/ytl142857/ChatRoom#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
